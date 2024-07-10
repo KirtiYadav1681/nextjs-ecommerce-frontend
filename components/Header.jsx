@@ -3,8 +3,9 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 import Center from "./Center";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Bars from "./icons/Bars";
+import { clearCart } from "@/redux/cartSlice";
 
 const StyledHeader = styled.header`
   background-color: #222;
@@ -97,8 +98,13 @@ const links = [
 ];
 
 const Header = () => {
+  const dispatch = useDispatch();
   const cartProducts = useSelector(state => state.cart.cartProducts);
   const [mobileNavActive, setMobileNavActive] = useState(false);
+
+  // useSelector(() => {
+  //   dispatch(clearCart());
+  // },[])
   
   return (
     <StyledHeader>

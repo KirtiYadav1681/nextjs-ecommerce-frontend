@@ -121,6 +121,7 @@ const Cart = () => {
     if (response.data.url) {
       window.location = response.data.url;
     }
+    dispatch(clearCart());
   }
   let total = 0;
   for (const productId of cartProducts) {

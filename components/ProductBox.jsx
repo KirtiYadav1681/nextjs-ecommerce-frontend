@@ -80,7 +80,7 @@ const ProductBox = ({ _id, title, description, price, images }) => {
       <ProductInfoBox>
         <PriceRow>
           <Title href={url}>{title}</Title>
-          <Price>${price}</Price>
+          <Price>Rs. {price}</Price>
         </PriceRow>
         <Button onClick={() => dispatch(addProduct(_id))} primary outline style={{marginTop:"10px"}}>
           <CartIcon />
