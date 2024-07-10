@@ -9,10 +9,12 @@ export default function Products({ products }) {
   return (
     <>
       <Header />
-      <Center>
-        <Title>All products</Title>
-        <ProductsGrid products={products} />
-      </Center>
+      <div style={{padding:"80px 0"}}>
+        <Center>
+          <Title>All products</Title>
+          <ProductsGrid products={products} />
+        </Center>
+      </div>
     </>
   );
 }

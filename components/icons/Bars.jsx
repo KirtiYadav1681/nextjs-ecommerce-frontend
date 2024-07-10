@@ -1,9 +1,8 @@
-import React from 'react'
+import React from "react";
+import { IoMenu } from "react-icons/io5";
 
 const Bars = () => {
-  return (
-    <div>Bars</div>
-  )
-}
+  return <IoMenu size={24} />;
+};
 
-export default Bars
+export default Bars;

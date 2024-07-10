@@ -2,7 +2,7 @@ import { model, models, Schema } from "mongoose";
 
 const OrderSchema = new Schema(
   {
-    line_item: Object,
+    line_items: Object,
     name: String,
     email: String,
     city: String,

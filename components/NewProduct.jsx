@@ -11,10 +11,12 @@ const Title = styled.h2`
 
 const NewProduct = ({ newProducts }) => {
   return (
-    <Center>
-      <Title>New Arrivals</Title>
-      <ProductsGrid products={newProducts} />
-    </Center>
+    <div style={{padding:"50px 0 80px 0"}}>
+      <Center>
+        <Title>New Arrivals</Title>
+        <ProductsGrid products={newProducts} />
+      </Center>
+    </div>
   );
 };
 

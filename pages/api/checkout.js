@@ -33,7 +33,7 @@ export default async function handler(req, res) {
       line_items.push({
         quantity,
         price_data: {
-          currency: "USD",
+          currency: "INR",
           product_data: { name: productInfo.title },
           unit_amount: quantity * productInfo.price * 100,
         },
@@ -42,7 +42,7 @@ export default async function handler(req, res) {
   }
 
   const orderDoc = await Order.create({
-    line_items,
+    line_items: line_items,
     name,
     email,
     city,
@@ -51,6 +51,8 @@ export default async function handler(req, res) {
     country,
     paid: false,
   });
+
+  console.log(orderDoc, "order doc");
 
   const session = await stripe.checkout.sessions.create({
     line_items,

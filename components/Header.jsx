@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import Center from "./Center";
@@ -109,7 +109,7 @@ const Header = () => {
             {links.map((link) => (
               <NavLink key={link.id} href={link.path} suppressHydrationWarning>
                 {link.path === "/cart"
-                  ? link.name + "" + cartProducts?.length
+                  ? link.name + " " + "(" + cartProducts?.length+")"
                   : link.name}
               </NavLink>
             ))}

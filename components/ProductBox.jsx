@@ -18,7 +18,7 @@ const WhiteBox = styled(Link)`
   border-radius: 10px;
   img {
     max-width: 100%;
-    max-height: 80px;
+    max-height: 100px;
   }
 `;
 
@@ -31,7 +31,11 @@ const Title = styled(Link)`
 `;
 
 const ProductInfoBox = styled.div`
-  margin-top: 5px;
+  margin-top: -5px;
+  background-color: #fff;
+  padding: 5px 15px 15px 15px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 `;
 
 const PriceRow = styled.div`
@@ -50,7 +54,7 @@ const Price = styled.div`
   font-weight: 400;
   text-align: right;
   @media screen and (min-width: 768px) {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 600;
     text-align: left;
   }
@@ -67,20 +71,21 @@ const ProductBox = ({ _id, title, description, price, images }) => {
           <img
             src={
               images?.[0] ||
-              "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?fm=jpg&w=3000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cHJvZHVjdHxlbnwwfHwwfHx8MA%3D%3D"
+              "https://dawid-next-ecommerce.s3.amazonaws.com/1679151719649.png"
             }
             alt=""
           />
         </div>
       </WhiteBox>
       <ProductInfoBox>
-        <Title href={url}>{title}</Title>
         <PriceRow>
+          <Title href={url}>{title}</Title>
           <Price>${price}</Price>
-          <Button block onClick={() => dispatch(addProduct(_id))} primary outline>
-            Add to cart
-          </Button>
         </PriceRow>
+        <Button onClick={() => dispatch(addProduct(_id))} primary outline style={{marginTop:"10px"}}>
+          <CartIcon />
+          Add to cart
+        </Button>
       </ProductInfoBox>
     </ProductWrapper>
   );

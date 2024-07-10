@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import Center from "./Center";
 import styled from "styled-components";
 import Button from "./Button";
@@ -10,7 +10,7 @@ import { addProduct } from "@/redux/cartSlice";
 const Bg = styled.div`
   background-color: #222;
   color: #fff;
-  padding: 50px 0;
+  padding: 150px 0;
 `;
 
 const Title = styled.h1`
@@ -28,9 +28,9 @@ const Desc = styled.p`
 `;
 
 const ColumnsWrapper = styled.div`
-  display: grid,
+  display: grid;
   grid-template-columns: 1fr;
-  gap: 40px;
+  gap: 100px;
   img{
     max-width:100%;
     max-height:200px;

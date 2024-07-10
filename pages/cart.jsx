@@ -26,7 +26,9 @@ const Box = styled.div`
 `;
 
 const ProductInfoCell = styled.td`
-  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 `;
 
 const ProductImageBox = styled.div`
@@ -43,12 +45,12 @@ const ProductImageBox = styled.div`
     max-height: 60px;
   }
   @media screen and (min-width: 768px) {
-    padding: 10px;
-    width: 100px;
-    height: 100px;
+    padding: 2px 10px;
+    width: 80px;
+    height: 80px;
     img {
-      max-width: 80px;
-      max-height: 80px;
+      max-width: 100px;
+      max-height: 100px;
     }
   }
 `;
@@ -68,7 +70,7 @@ const CityHolder = styled.div`
 `;
 
 const Cart = () => {
-  const cartProducts = useSelector(state => state.cart.cartProducts)
+  const cartProducts = useSelector((state) => state.cart.cartProducts);
   const [products, setProducts] = useState([]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -104,7 +106,7 @@ const Cart = () => {
   }
 
   function lessOfThisProduct(id) {
-    dispatch(removeProduct(id))
+    dispatch(removeProduct(id));
   }
   async function goToPayment() {
     const response = await axios.post("/api/checkout", {
@@ -163,9 +165,17 @@ const Cart = () => {
                     <tr key={product._id}>
                       <ProductInfoCell>
                         <ProductImageBox>
-                          <img src={product.images[0]} alt="" />
+                          <img
+                            src={
+                              product.images[0] ||
+                              "https://dawid-next-ecommerce.s3.amazonaws.com/1679151719649.png"
+                            }
+                            alt=""
+                          />
                         </ProductImageBox>
-                        {product.title}
+                        <span style={{ paddingLeft: "5px" }}>
+                          {product.title}
+                        </span>
                       </ProductInfoCell>
                       <td>
                         <Button onClick={() => lessOfThisProduct(product._id)}>
@@ -189,9 +199,11 @@ const Cart = () => {
                     </tr>
                   ))}
                   <tr>
+                    <td style={{ paddingLeft: "5px", fontWeight: "bold" }}>
+                      Total:
+                    </td>
                     <td></td>
-                    <td></td>
-                    <td>${total}</td>
+                    <td style={{ fontWeight: "bold" }}>${total}</td>
                   </tr>
                 </tbody>
               </Table>
@@ -206,7 +218,6 @@ const Cart = () => {
                 value={name}
                 name="name"
                 onChange={(e) => setName(e.target.value)}
-                style={{color:"black"}}
               />
               <Input
                 type="text"

@@ -49,7 +49,7 @@ const ProductImages = ({ images }) => {
             active={image === activeImage}
             onClick={() => setActiveImage(image)}
           >
-            <Image src={image} alt="" />
+            <Image src={image || "https://dawid-next-ecommerce.s3.amazonaws.com/1679151719649.png"} alt="" />
           </ImageButton>
         ))}
       </ImageButtons>
