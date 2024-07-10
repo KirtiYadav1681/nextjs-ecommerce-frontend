@@ -1,0 +1,89 @@
+import styled from "styled-components";
+import Button from "./Button";
+import CartIcon from "./icons/CartIcon";
+import Link from "next/link";
+import { useDispatch } from "react-redux";
+import { addProduct } from "@/redux/cartSlice";
+
+const ProductWrapper = styled.div``;
+
+const WhiteBox = styled(Link)`
+  background-color: #fff;
+  padding: 20px;
+  height: 120px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  img {
+    max-width: 100%;
+    max-height: 80px;
+  }
+`;
+
+const Title = styled(Link)`
+  font-weight: normal;
+  font-size: 0.9rem;
+  color: inherit;
+  text-decoration: none;
+  margin: 0;
+`;
+
+const ProductInfoBox = styled.div`
+  margin-top: 5px;
+`;
+
+const PriceRow = styled.div`
+  display: block;
+  @media screen and (min-width: 768px) {
+    display: flex;
+    gap: 5px;
+  }
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 2px;
+`;
+
+const Price = styled.div`
+  font-size: 1rem;
+  font-weight: 400;
+  text-align: right;
+  @media screen and (min-width: 768px) {
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: left;
+  }
+`;
+
+const ProductBox = ({ _id, title, description, price, images }) => {
+  const dispatch = useDispatch();
+  const url = `/product/${_id}`;
+
+  return (
+    <ProductWrapper>
+      <WhiteBox href={url}>
+        <div>
+          <img
+            src={
+              images?.[0] ||
+              "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?fm=jpg&w=3000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cHJvZHVjdHxlbnwwfHwwfHx8MA%3D%3D"
+            }
+            alt=""
+          />
+        </div>
+      </WhiteBox>
+      <ProductInfoBox>
+        <Title href={url}>{title}</Title>
+        <PriceRow>
+          <Price>${price}</Price>
+          <Button block onClick={() => dispatch(addProduct(_id))} primary outline>
+            Add to cart
+          </Button>
+        </PriceRow>
+      </ProductInfoBox>
+    </ProductWrapper>
+  );
+};
+
+export default ProductBox;
