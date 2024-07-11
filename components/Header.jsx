@@ -3,9 +3,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 import Center from "./Center";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Bars from "./icons/Bars";
-import { clearCart } from "@/redux/cartSlice";
 
 const StyledHeader = styled.header`
   background-color: #222;
@@ -23,14 +22,7 @@ const Wrapper = styled.div`
   padding: 20px 0;
 `;
 const StyledNav = styled.nav`
-  ${(props) =>
-    props.mobileNavActive
-      ? `
-    display: block;
-  `
-      : `
-    display: none;
-  `}
+  display: none;
   gap: 15px;
   position: fixed;
   top: 0;
@@ -39,6 +31,11 @@ const StyledNav = styled.nav`
   right: 0;
   padding: 70px 20px 20px;
   background-color: #222;
+  ${(props) =>
+    props.$mobilenavactive === "false" &&
+    `
+      display: block;
+    `}
   @media screen and (min-width: 768px) {
     display: flex;
     position: static;
@@ -98,29 +95,30 @@ const links = [
 ];
 
 const Header = () => {
-  const dispatch = useDispatch();
-  const cartProducts = useSelector(state => state.cart.cartProducts);
-  const [mobileNavActive, setMobileNavActive] = useState(false);
+  const cartProducts = useSelector((state) => state.cart.cartProducts);
+  const [mobilenavactive, setmobilenavactive] = useState(false.toString());
 
-  // useSelector(() => {
-  //   dispatch(clearCart());
-  // },[])
-  
   return (
     <StyledHeader>
       <Center>
         <Wrapper>
           <Logo href="/">Ecommerce</Logo>
-          <StyledNav mobileNavActive={mobileNavActive}>
+          <StyledNav $mobilenavactive={mobilenavactive}>
             {links.map((link) => (
               <NavLink key={link.id} href={link.path} suppressHydrationWarning>
                 {link.path === "/cart"
-                  ? link.name + " " + "(" + cartProducts?.length+")"
+                  ? link.name + " " + "(" + cartProducts?.length + ")"
                   : link.name}
               </NavLink>
             ))}
           </StyledNav>
-          <NavButton onClick={() => setMobileNavActive((prev) => !prev)}>
+          <NavButton
+            onClick={() =>
+              setmobilenavactive((prev) =>
+                prev === "false" ? "true" : "false"
+              )
+            }
+          >
             <Bars />
           </NavButton>
         </Wrapper>

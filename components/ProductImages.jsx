@@ -7,11 +7,13 @@ const Image = styled.img`
 `;
 const BigImage = styled.img`
   max-width: 100%;
-  max-height: 200px;
+  max-height: 100%;
 `;
 const ImageButtons = styled.div`
   display: flex;
-  gap: 10px;
+  align-items: center;
+  gap:15px;
+  justify-content: space-between;
   flex-grow: 0;
   margin-top: 10px;
 `;
@@ -25,7 +27,7 @@ const ImageButton = styled.div`
       : `
       border-color: transparent;
     `}
-  height: 40px;
+  height: 60px;
   padding: 2px;
   cursor: pointer;
   border-radius: 5px;
@@ -49,7 +51,13 @@ const ProductImages = ({ images }) => {
             active={image === activeImage}
             onClick={() => setActiveImage(image)}
           >
-            <Image src={image || "https://dawid-next-ecommerce.s3.amazonaws.com/1679151719649.png"} alt="" />
+            <Image
+              src={
+                image ||
+                "https://dawid-next-ecommerce.s3.amazonaws.com/1679151719649.png"
+              }
+              alt=""
+            />
           </ImageButton>
         ))}
       </ImageButtons>

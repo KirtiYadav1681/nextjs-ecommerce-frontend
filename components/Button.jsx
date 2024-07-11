@@ -75,7 +75,16 @@ const StyledButton = styled.button`
   ${ButtonStyle}
 `;
 const Button = ({ children, ...rest }) => {
-  return <StyledButton {...rest}>{children}</StyledButton>;
+  const propsToPass = {
+    ...rest,
+    white: rest.white ? "true" : undefined,
+    black: rest.black ? "true" : undefined,
+    primary: rest.primary ? "true" : undefined,
+    outline: rest.outline ? "true" : undefined,
+    block: rest.block ? "true" : undefined,
+  };
+
+  return <StyledButton {...propsToPass}>{children}</StyledButton>;
 };
 
 export default Button;

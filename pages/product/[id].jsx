@@ -13,6 +13,7 @@ import { addProduct } from "@/redux/cartSlice";
 
 const ColWrapper = styled.div`
   display: grid;
+  height:65vh;
   grid-template-columns: 1fr;
   @media screen and (min-width: 768px) {
     grid-template-columns: 0.8fr 1.2fr;
@@ -21,7 +22,7 @@ const ColWrapper = styled.div`
   margin: 40px 0;
 `;
 const PriceRow = styled.div`
-  margin-top: 20px;
+  margin-top: 50px;
   display: flex;
   gap: 20px;
   align-items: center;
@@ -41,9 +42,9 @@ export default function ProductPage({ product }) {
             <WhiteBox>
               <ProductImages images={product.images} />
             </WhiteBox>
-            <div>
+            <div style={{paddingBottom:"100px"}}>
               <Title>{product.title}</Title>
-              <p>{product.description}</p>
+              <p style={{marginTop:"30px", color:"#606060", lineHeight:"25px"}}>{product.description}</p>
               <PriceRow>
                 <div>
                   <Price>
