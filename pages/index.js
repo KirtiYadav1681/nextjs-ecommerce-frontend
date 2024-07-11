@@ -3,7 +3,6 @@ import Featured from "@/components/Featured";
 import { Product } from "@/models/Product";
 import { mongooseConnect } from "@/lib/mongoose";
 import NewProduct from "@/components/NewProduct";
-import Footer from "@/components/Footer";
 
 export default function HomePage({ featuredProduct, newProducts }) {
 
